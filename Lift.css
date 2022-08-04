@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Mouse+Memoirs&family=Open+Sans:ital,wght@1,700&family=Oswald:wght@200;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+:root {
+    --primary-color: #FF6666;
+    --primary-color-light: #03203C;
+    --success-green: #16a34a;
+    --error-red: #ef4444;
+    --lift-bg: #57534e;
+  }
+
+header{
+    font-family: "Mouse Memoirs", sans-serif ;
+    font-size: 200%;
+    color: #12B0E8;
+}
+
+h1 {
+    font-size: 200%;
+    text-align: center;
+    position: relative;
+    bottom: 10px;
+    padding: 30px 10px 30px;
+    background: var(--primary-color);
+    color: var(--primary-color-light);
+}
+img{
+    position: relative;
+    top: 5px;
+    flex: auto;
+    height: 50px;
+    width: 50px;
+}
+
