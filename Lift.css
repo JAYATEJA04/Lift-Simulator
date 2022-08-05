@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&family=Mouse+Memoirs&family=Open+Sans:ital,wght@1,700&family=Oswald:wght@200;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=c:wght@400;900&family=Mouse+Memoirs&family=Open+Sans:ital,wght@1,700&family=Oswald:wght@200;700&display=swap');
 
 * {
     padding: 0;
@@ -36,4 +36,21 @@ img{
     height: 50px;
     width: 50px;
 }
+
+.add-buttons{
+  text-align: center;
+  padding: 0% 10%;
+}
+
+.add-buttons button{
+  background-color: #03203C;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 10%;
+  padding: 10px 10px ;
+  font-family: "Mouse Memoirs";
+  font-size: 25px;
+}
+
 
