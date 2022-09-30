@@ -4,15 +4,11 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-  }
+}
 
-:root {
-    --primary-color: #FF6666;
-    --primary-color-light: #03203C;
-    --success-green: #16a34a;
-    --error-red: #ef4444;
-    --lift-bg: #57534e;
-  }
+body{
+  background-color: beige;
+}
 
 header{
     font-family: "Mouse Memoirs", sans-serif ;
@@ -26,8 +22,12 @@ h1 {
     position: relative;
     bottom: 10px;
     padding: 30px 10px 30px;
-    background: var(--primary-color);
-    color: var(--primary-color-light);
+    background-color: #FF6666;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: #03203C;
 }
 img{
     position: relative;
@@ -37,24 +37,51 @@ img{
     width: 50px;
 }
 
-.add-buttons{
+#add-buttons{
   display: flex;
   justify-content: center;
 }
 
-.add-buttons button{
+#add-buttons button{
   padding: 10px 10px;
   background-color: #03203C;
   color: whitesmoke;
   margin-right: 0.5rem;
-  font-size: 20px;
+  font-size: 25px;
   border-radius: 5px;
   width: 8rem;
   font-family: "Mouse Memoirs";
   cursor: pointer;
 }
 
-.floors{
+#add-buttons button:active{
+  background-color: #57534e;
+}
+
+#lift-buttons{
   display: flex;
   margin-left: 10px;
+  margin-top: 70px;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
 }
+
+#lift-buttons button{
+  width: 4rem;
+  font-size: 20px;
+  padding: 10px 10px;
+  margin-right: 10px;
+  font-family: "Mouse Memoirs";
+  margin-bottom: 20px;
+  background-color: #16a34a;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#lift-buttons button:active{
+  background-color: #57534e;
+}
+
+
+
+

@@ -9,30 +9,22 @@
 </head>
 <body>
     <header>
-        <h1> Lift Simulator <img src="./Lift image/elevator-icon-lift-symbol-free-vector.webp" alt=""></h1>
+        <h1 class ="heading"> Lift Simulator <img src="./Lift image/elevator-icon-lift-symbol-free-vector.webp" alt=""></h1>
     </header>    
 
-    <div class="add-buttons">
-        <button class="floor">+ Floor</button>
-        <button class="lift">+ Lift</button>
+    <div id="add-buttons">
+        <button id="floor" onclick="Floorbtn()">+ Floor</button>
+        <button id="lift">+ Lift</button>
     </div>
 
-    <div class="floors">
-        <div class="floor" style="border-bottom: 1px solid black">
-            <div class="lift-buttons">
-                <button class="call-up">UP</button>
-                <button class="call-up">DOWN</button>
-            </div>
-            <div class="lift-container">
-
-                <div class="left-door">
-
-                </div>
-                <div class="right-door">
-
-                </div>
+    <!-- <div class="floors">
+        <div class="floor">
+            <div id="lift-buttons">
+                <button id="call-up">UP</button>
+                <button id="call-down">DOWN</button>
             </div>
         </div>
-    </div>
+    </div> -->
+    <script src="./Lift.js"></script>
 </body>
 </html>
