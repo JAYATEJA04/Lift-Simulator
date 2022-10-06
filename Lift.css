@@ -166,7 +166,8 @@ h1 {
   height: 100%;
   width: 50%;
   background-color: aquamarine;
-  animation: linear backwards;
+  animation-name: left;
+  transition: 2.5s;
 }
 
 .lift-right-door{
