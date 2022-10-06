@@ -29,13 +29,7 @@ h1 {
     border-radius: 10px;
     color: #03203C;
 }
-img{
-    position: relative;
-    top: 5px;
-    flex: auto;
-    height: 50px;
-    width: 50px;
-}
+
 /* 
 #add-buttons{
   display: flex;
@@ -104,11 +98,23 @@ img{
   color: white;
 }
 
-#lift-buttons{
+.confirm-btn:active{
+  background-color: #57534e;
+}
+
+.floor{
+  border-bottom: 1px solid black;
+  display: flex;
+  margin-left: 20px;
+  margin-top: 1rem;
+  margin-bottom: 5px;
+  height: 7rem;
+}
+
+/* #lift-buttons{
   display: flex;
   margin-left: 10px;
   margin-top: 70px;
-  border-bottom: 1px solid black;
   margin-bottom: 10px;
 }
 
@@ -126,8 +132,46 @@ img{
 
 #lift-buttons button:active{
   background-color: #57534e;
+} */
+
+.upward-downward button{
+  width: 4rem;
+  font-size: 20px;
+  padding: 10px 10px;
+  margin-right: 10px;
+  font-family: "Mouse Memoirs";
+  margin-bottom: 2px;
+  background-color: #16a34a;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
+.upward-downward button:active{
+  background-color: #57534e;
+}
 
+.lifts{
+  width: 5rem;
+  height: 7rem;
+  margin-left: 3rem;
+  margin-bottom: 1px;
+  display: flex;
+  padding: 5px;
+  border: 5px solid black;
+  border-radius: 5px;
+}
 
+.lift-left-door{
+  border: 3px solid grey;
+  height: 100%;
+  width: 50%;
+  background-color: aquamarine;
+  animation: linear backwards;
+}
 
+.lift-right-door{
+  border: 3px solid grey;
+  height: 100%;
+  width: 50%;
+  background-color: aquamarine;
+}  
