@@ -8,7 +8,7 @@ confirmButton.addEventListener('click', function(e){
         e.preventDefault();
         generateFloors(floorInput.value);
         generateLifts(liftInput.value);
-        clickButton();
+        let UPbutton = document.querySelector('.UP-btn');
     }
 )
 
@@ -57,10 +57,5 @@ function generateLifts(numberOfLifts){
 }
 
 function clickButton(){
-    let UPbutton = document.querySelector('.UP-btn');
-    // let DOWNbutton = document.querySelector('.Down-btn');
-    let floorNumber = document.getElementById('floorNumber');
-    UPbutton.addEventListener('click', function(){
-        alert(`Your are on ${floorNumber.value}th floor, and you called UP button.`)
-    })
+    
 }
