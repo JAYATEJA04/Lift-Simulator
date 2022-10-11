@@ -1,14 +1,16 @@
 let floorInput = document.querySelector('.floor-input');
 let liftInput = document.querySelector('.lift-input');
 let confirmButton = document.querySelector('.confirm-btn');
-
+let destinationArr = [];
+let liftQueue = [];
+let liftPosition = [];
 
 // Adding floors and preventDefault.
 confirmButton.addEventListener('click', function(e){
         e.preventDefault();
         generateFloors(floorInput.value);
         generateLifts(liftInput.value);
-        let UPbutton = document.querySelector('.UP-btn');
+        floorButtons();
     }
 )
 
@@ -25,8 +27,8 @@ function generateFloors(numberOfFloors){
         currentFloor.setAttribute("class", "floor");
         currentFloor.innerHTML = `
         <div class="upward-downward">
-            <button class="UP-btn">UP</button>
-            <button class="Down-btn">DOWN</button>
+            <button id=${currentFloor} class="floor-btn UP-btn">UP</button>
+            <button id=${currentFloor} class="floor-btn Down-btn">DOWN</button>
             <p class="Floor-number"> ${floorNumber} </p>
         </div>
         `
@@ -52,10 +54,20 @@ function generateLifts(numberOfLifts){
                 </div>
             `
             document.getElementById('Floor-0').appendChild(currentLift);
+            liftPosition[i] = 0;
         }
     }
 }
 
-function clickButton(){
-    
+function floorButtons(){
+    let floorsButton = document.querySelector('.floor-btn');
+    floorsButton.forEach(f => {
+        f.addEventListener('click', () => {
+            let targetFloor = parseInt(f.id.slice(-1));
+            if(!destinationArr.includes(targetFloor)){
+                destinationArr.push(targetFloor);
+                liftQueue.push(targetFloor);
+            }
+        })
+    })
 }
