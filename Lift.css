@@ -106,6 +106,7 @@ h1 {
   border-bottom: 1px solid black;
   display: flex;
   margin-left: 20px;
+  margin-right: 20px;
   margin-top: 1rem;
   margin-bottom: 5px;
   height: 7rem;
@@ -168,6 +169,13 @@ h1 {
   border-radius: 5px;
 }
 
+.lifts p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .lift-left-door{
   border: 3px solid grey;
   height: 100%;
@@ -182,3 +190,29 @@ h1 {
   width: 50%;
   background-color: aquamarine;
 }  
+
+.leftGate{
+  left: 0;
+}
+
+.rightGate{
+  right: 0;
+}
+
+.animateLiftsDoorsOnFloorStop  {
+  animation-duration: 5s;
+  animation-timing-function: linear;
+  animation-name: doorSimulation;
+}
+
+@keyframes doorSimulation {
+  from {
+      width: 50%;
+  }
+  50% {
+      width: 0%;
+  }
+  to {
+      width: 50%;
+  }
+}
