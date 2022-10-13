@@ -184,6 +184,11 @@ h1 {
   animation-name: left;
 }
 
+.left-move{
+  transform: translate(-100%);
+  transition-duration: 2.5s;
+}
+
 .lift-right-door{
   border: 3px solid grey;
   height: 100%;
@@ -191,28 +196,7 @@ h1 {
   background-color: aquamarine;
 }  
 
-.leftGate{
-  left: 0;
-}
-
-.rightGate{
-  right: 0;
-}
-
-.animateLiftsDoorsOnFloorStop  {
-  animation-duration: 5s;
-  animation-timing-function: linear;
-  animation-name: doorSimulation;
-}
-
-@keyframes doorSimulation {
-  from {
-      width: 50%;
-  }
-  50% {
-      width: 0%;
-  }
-  to {
-      width: 50%;
-  }
+.right-move{
+  transform: translate(100%);
+  transition-duration: 2.5s;
 }

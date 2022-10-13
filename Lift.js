@@ -15,8 +15,8 @@ function generateFloors(numberOfFloors){
         currentFloor.setAttribute("class", "floor");
         currentFloor.innerHTML = `
         <div class="upward-downward">
-            <button class="floor-btn UP-btn">UP</button>
-            <button class="floor-btn Down-btn">DOWN</button>
+            <button class="toggle floor-btn UP-btn" data-floorInfor=${i}>UP</button>
+            <button class="toggle floor-btn Down-btn" data-floorInfor=${i}>DOWN</button>
             <p class="Floor-number"> ${floorNumber} </p>
         </div>
         `
@@ -38,19 +38,66 @@ function generateLifts(numberOfLifts){
             liftNumberDetail = liftCount;
             // currentLift.setAttribute("class", "lifts");
             currentLift.innerHTML = `
-                <div class="lifts">
+                <div class="lifts" liftPosition="0">
                     <div class="lift-left-door FLEX"></div>
                     <div class="lift-right-door FLEX"></div>
                 </div>
             `
             document.getElementById('Floor-0').appendChild(currentLift);
-            liftPosition[i] = 0;
         }
     }
 }
+
+function startSimulation(){
+    let presentFloor = 0;
+    document.addEventListener('click', (event) => {
+        if(event.target.classList.contains('toggle')){
+            if(event.target.dataset.floorInfo != presentFloor){
+                getLift(event.target.dataset.floorInfo);
+            } else {
+                return;
+            }
+            presentFloor = event.target.dataset.floorInfo;
+        }
+    });
+}
+
+function getLift(destinationFloor){
+    const activeLift = Array.from(document.querySelector('.lifts'));
+    for(let i = 0 ; i < activeLift.length ; i++){
+        if(!activeLift[i].classList.contains('engaged')){
+            moveLift(destinationFloor, activeLift[i]);
+        }
+    }
+}
+
+function moveLift(destinationFloor, liftToMove){
+    let position = liftToMove.dataset.liftPosition;
+    let time = Math.abs(position - destinationFloor);
+    liftToMove.style.transition = `transform${time * 2}s linear`;
+    liftToMove.style.transform = `translateY(${-100 * destinationFloor}px)`;
+    liftToMove.classList.add('engaged');
+    liftToMove.dataset.liftPosition = destinationFloor;
+
+    setTimeout(() => {
+        liftToMove.children[0].classList.add('left-move');
+        liftToMove.children[0].classList.add('right-move');
+    }, time * 3000);
+
+    setTimeout(() => {
+        liftToMove.children[0].classList.remove('left-move');
+        liftToMove.children[0].classList.remove('right-move');
+    }, time * 5000);
+
+    setTimeout(() => {
+        liftToMove.classList.remove("engaged");
+    }, time * 7000);
+}
+
 // Adding floors and preventDefault.
 confirmButton.addEventListener('click', function(e){
     e.preventDefault();
     generateFloors(floorInput.value);
     generateLifts(liftInput.value);
+    startSimulation();
 })
