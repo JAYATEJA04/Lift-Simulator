@@ -6,7 +6,7 @@ function generateFloors(numberOfFloors){
     if(numberOfFloors <= 0 || numberOfFloors > 10){
         alert(`The number of floors should be in the range of 1 to 10`);
     } else {
-        document.querySelector('.lift-simulation').innerHTML = ``;
+        document.querySelector('.simulation-play').innerHTML = ``;
         for(let i = 0 ; i < numberOfFloors ; i++){
         let floorNumber = `Floor-${numberOfFloors - i - 1}`;
         let currentFloor = document.createElement("div");
@@ -15,12 +15,12 @@ function generateFloors(numberOfFloors){
         currentFloor.setAttribute("class", "floor");
         currentFloor.innerHTML = `
         <div class="upward-downward">
-            <button class="toggle floor-btn UP-btn" data-floorInfor=${i}>UP</button>
-            <button class="toggle floor-btn Down-btn" data-floorInfor=${i}>DOWN</button>
+            <button class="toggle floor-btn UP-btn" data-floorInfo=${numberOfFloors - i - 1}>UP</button>
+            <button class="toggle floor-btn Down-btn" data-floorInfo=${numberOfFloors - i - 1}>DOWN</button>
             <p class="Floor-number"> ${floorNumber} </p>
         </div>
         `
-        document.querySelector('.lift-simulation').appendChild(currentFloor);
+        document.querySelector('.simulation-play').appendChild(currentFloor);
     }
     }
 }
@@ -33,49 +33,41 @@ function generateLifts(numberOfLifts){
             let liftCount = `Lift-${i}`
             const currentLift = document.createElement('div');
             currentLift.setAttribute('id',liftCount);
+            currentLift.setAttribute('listPostion',"0");
+            currentLift.setAttribute('class',"lifts");
     
             liftMotionDetail = false;
             liftNumberDetail = liftCount;
             // currentLift.setAttribute("class", "lifts");
             currentLift.innerHTML = `
-                <div class="lifts" liftPosition="0">
-                    <div class="lift-left-door FLEX"></div>
-                    <div class="lift-right-door FLEX"></div>
-                </div>
+                <div class="lift-left-door FLEX"></div>
+                <div class="lift-right-door FLEX"></div>
             `
             document.getElementById('Floor-0').appendChild(currentLift);
         }
     }
 }
 
-function startSimulation(){
-    let presentFloor = 0;
-    document.addEventListener('click', (event) => {
-        if(event.target.classList.contains('toggle')){
-            if(event.target.dataset.floorInfo != presentFloor){
-                getLift(event.target.dataset.floorInfo);
-            } else {
-                return;
-            }
-            presentFloor = event.target.dataset.floorInfo;
-        }
-    });
-}
+// function startSimulation(){
+    
+// }
 
 function getLift(destinationFloor){
     const activeLift = Array.from(document.querySelector('.lifts'));
     for(let i = 0 ; i < activeLift.length ; i++){
         if(!activeLift[i].classList.contains('engaged')){
+            // alert('yep.')
             moveLift(destinationFloor, activeLift[i]);
+            return;
         }
     }
 }
 
 function moveLift(destinationFloor, liftToMove){
-    let position = liftToMove.dataset.liftPosition;
+    let position = liftToMove.dataset.liftposition;
     let time = Math.abs(position - destinationFloor);
     liftToMove.style.transition = `transform${time * 2}s linear`;
-    liftToMove.style.transform = `translateY(${-100 * destinationFloor}px)`;
+    liftToMove.style.transform = `translateY(${-100}px)`;
     liftToMove.classList.add('engaged');
     liftToMove.dataset.liftPosition = destinationFloor;
 
@@ -99,5 +91,17 @@ confirmButton.addEventListener('click', function(e){
     e.preventDefault();
     generateFloors(floorInput.value);
     generateLifts(liftInput.value);
-    startSimulation();
+
+    let presentFloor = 0;
+    document.addEventListener('click', (event) => {
+        if(event.target.classList.contains('toggle')){
+            if(event.target.dataset.floorInfo !== presentFloor){
+                // alert('you reached here.')
+                getLift(event.target.dataset.floorInfo);
+            } else {
+                return;
+            }
+            presentFloor = event.target.dataset.floorInfo;
+        }
+    });
 })

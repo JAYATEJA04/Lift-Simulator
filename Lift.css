@@ -105,6 +105,7 @@ h1 {
 .floor{
   border-bottom: 1px solid black;
   display: flex;
+  position: relative;
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 1rem;
@@ -163,7 +164,7 @@ h1 {
   height: 7rem;
   margin-left: 3rem;
   margin-bottom: 1px;
-  display: flex;
+  display: inline-flex;
   padding: 5px;
   border: 5px solid black;
   border-radius: 5px;
@@ -181,7 +182,7 @@ h1 {
   height: 100%;
   width: 50%;
   background-color: aquamarine;
-  animation-name: left;
+  transition: 2.5s;
 }
 
 .left-move{
@@ -194,9 +195,14 @@ h1 {
   height: 100%;
   width: 50%;
   background-color: aquamarine;
+  transition-duration: 2.5s;
 }  
 
 .right-move{
   transform: translate(100%);
-  transition-duration: 2.5s;
+  transition: 2.5s;
+}
+
+.lift-simulation{
+  display: grid;
 }
