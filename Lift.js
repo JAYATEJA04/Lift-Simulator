@@ -1,107 +1,132 @@
 let floorInput = document.querySelector('.floor-input');
 let liftInput = document.querySelector('.lift-input');
 let confirmButton = document.querySelector('.confirm-btn');
-
-function generateFloors(numberOfFloors){
-    if(numberOfFloors <= 0 || numberOfFloors > 10){
-        alert(`The number of floors should be in the range of 1 to 10`);
-    } else {
-        document.querySelector('.simulation-play').innerHTML = ``;
-        for(let i = 0 ; i < numberOfFloors ; i++){
-        let floorNumber = `Floor-${numberOfFloors - i - 1}`;
-        let currentFloor = document.createElement("div");
-        currentFloor.setAttribute('id',floorNumber)
-
-        currentFloor.setAttribute("class", "floor");
-        currentFloor.innerHTML = `
-        <div class="upward-downward">
-            <button class="toggle floor-btn UP-btn" data-floorInfo=${numberOfFloors - i - 1}>UP</button>
-            <button class="toggle floor-btn Down-btn" data-floorInfo=${numberOfFloors - i - 1}>DOWN</button>
-            <p class="Floor-number"> ${floorNumber} </p>
-        </div>
-        `
-        document.querySelector('.simulation-play').appendChild(currentFloor);
-    }
-    }
-}
-
-function generateLifts(numberOfLifts){
-    if(numberOfLifts <=  0 || numberOfLifts > 10){
-        alert(`The number of lifts should be in the range of 1 to 10`);
-    } else {
-        for(let i = 0 ; i < numberOfLifts ; i++){
-            let liftCount = `Lift-${i}`
-            const currentLift = document.createElement('div');
-            currentLift.setAttribute('id',liftCount);
-            currentLift.setAttribute('listPostion',"0");
-            currentLift.setAttribute('class',"lifts");
-    
-            liftMotionDetail = false;
-            liftNumberDetail = liftCount;
-            // currentLift.setAttribute("class", "lifts");
-            currentLift.innerHTML = `
-                <div class="lift-left-door FLEX"></div>
-                <div class="lift-right-door FLEX"></div>
-            `
-            document.getElementById('Floor-0').appendChild(currentLift);
-        }
-    }
-}
+let refresh;
 
 // function startSimulation(){
     
 // }
 
+function openLift(liftToMove){
+    setTimeout(() => {
+        liftToMove.children[0].classList.add("left-move");
+        liftToMove.children[1].classList.add("right-move");
+    }, 3000);
+}
+
+function closeLift(liftToMove){
+    setTimeout(() => {
+        liftToMove.children[0].classList.remove ("left-move");
+        liftToMove.children[1].classList.remove("right-move");
+    }, 5000);
+}
+
+function moveLift(destinationFloor, liftToMove){
+
+    liftToMove.style.transition = `transform 2s linear`;
+    liftToMove.style.transform = `translateY(${-8.3 * destinationFloor}rem)`;
+    liftToMove.classList.add('busy');
+    liftToMove.dataset.liftInfo = destinationFloor;
+
+    openLift(liftToMove);
+    closeLift(liftToMove);
+    setTimeout(() => {
+        liftToMove.classList.remove("busy");
+    }, 7000);
+}
+
 function getLift(destinationFloor){
-    const activeLift = Array.from(document.querySelector('.lifts'));
+    const activeLift = Array.from(document.getElementsByClassName('lifts'));
+    console.log(destinationFloor);
     for(let i = 0 ; i < activeLift.length ; i++){
-        if(!activeLift[i].classList.contains('engaged')){
-            // alert('yep.')
+        if(!activeLift[i].classList.contains('busy')){
             moveLift(destinationFloor, activeLift[i]);
             return;
         }
     }
 }
 
-function moveLift(destinationFloor, liftToMove){
-    let position = liftToMove.dataset.liftposition;
-    let time = Math.abs(position - destinationFloor);
-    liftToMove.style.transition = `transform${time * 2}s linear`;
-    liftToMove.style.transform = `translateY(${-100}px)`;
-    liftToMove.classList.add('engaged');
-    liftToMove.dataset.liftPosition = destinationFloor;
+function startSimulation(){
+    let presentFloor = 0;
+    document.addEventListener('click', (i) => {
+        if(i.target.classList.contains("toggle")){
+            if(i.target.dataset.information == presentFloor){
+                return;
+            } else {
+                getLift(i.target.dataset.information);
+            }
+            presentFloor = i.target.dataset.information;
+        }
+    });
+}
 
-    setTimeout(() => {
-        liftToMove.children[0].classList.add('left-move');
-        liftToMove.children[0].classList.add('right-move');
-    }, time * 3000);
+function generateLifts(numberOfLifts){
+    for(let i = 0 ; i < numberOfLifts ; i++){
+        let liftsClass = document.createElement("div");
+        liftsClass.setAttribute("class", "lifts");
+        liftsClass.setAttribute("data-liftInfo", "0");
+        liftsClass.innerHTML =
+        `
+            <div class="lift-left-door FLEX"></div>
+            <div class="lift-right-door FLEX"></div>
+        `
+        document.getElementById('Floor-0').appendChild(liftsClass);
+    }
+}
 
-    setTimeout(() => {
-        liftToMove.children[0].classList.remove('left-move');
-        liftToMove.children[0].classList.remove('right-move');
-    }, time * 5000);
+function generateFloors(numberOfFloors){
+    let playArea = document.querySelector('.floor-direction');
+    let temp;
+    for(let i = numberOfFloors - 1 ; i >= 0 ; i--){
+        let floorNum = `Floor-${i}`;
+        let floorContainer = document.createElement("div");
+        floorContainer.setAttribute("class", "floor-container");
 
-    setTimeout(() => {
-        liftToMove.classList.remove("engaged");
-    }, time * 7000);
+        let floorWrapper = document.createElement("div");
+        floorWrapper.setAttribute("class", "floor-wrapper");
+
+        let liftButtons = document.createElement("div");
+        liftButtons.setAttribute("class", "upward-downward");
+
+        // not sure whether it is = or +=, check later.
+        liftButtons.innerHTML = 
+        `
+        <button class="toggle UP-btn" data-information="${i}">UP</button>
+        <button class="toggle Down-btn" data-information="${i}">DOWN</button>
+        `
+        floorWrapper.appendChild(liftButtons);
+
+        //lift container
+        let liftContainer = document.createElement("div");
+        liftContainer.setAttribute("id", floorNum);
+        liftContainer.setAttribute("class", "lift-flex");
+        floorWrapper.appendChild(liftContainer);
+
+
+        floorContainer.appendChild(floorWrapper);
+        playArea.appendChild(floorContainer);
+    }
+}
+
+function checkInput(numberOfFloors, numberOfLifts){
+    if(numberOfFloors <= 0 || numberOfFloors > 10){
+        alert("The number of floors should be in the range of 1 to 10");
+        return false;
+    } else if (numberOfLifts <= 0 || numberOfLifts > 10){
+        alert("The number of lifts should be in the range of 1 to 10");
+        return false;
+    } 
+    
+    return true;
 }
 
 // Adding floors and preventDefault.
 confirmButton.addEventListener('click', function(e){
     e.preventDefault();
-    generateFloors(floorInput.value);
-    generateLifts(liftInput.value);
-
-    let presentFloor = 0;
-    document.addEventListener('click', (event) => {
-        if(event.target.classList.contains('toggle')){
-            if(event.target.dataset.floorInfo !== presentFloor){
-                // alert('you reached here.')
-                getLift(event.target.dataset.floorInfo);
-            } else {
-                return;
-            }
-            presentFloor = event.target.dataset.floorInfo;
-        }
-    });
+    if(checkInput(floorInput.value, liftInput.value)){
+        // generateFloors
+        generateFloors(floorInput.value);
+        generateLifts(liftInput.value);
+        refresh = setInterval(startSimulation(), 1000);
+    }
 })

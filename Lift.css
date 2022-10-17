@@ -103,46 +103,34 @@ h1 {
 }
 
 .floor{
-  border-bottom: 1px solid black;
+  margin: 1rem auto;
+  max-width: 1500px;
+  padding: 0 1rem;
+}
+
+.floor-wrapper{
   display: flex;
-  position: relative;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-top: 1rem;
-  margin-bottom: 5px;
-  height: 7rem;
+  border-bottom: 3px solid black;
 }
 
-/* #lift-buttons{
+.items-container{
   display: flex;
-  margin-left: 10px;
-  margin-top: 70px;
-  margin-bottom: 10px;
+  justify-content: space-between;
 }
 
-#lift-buttons button{
-  width: 4rem;
-  font-size: 20px;
-  padding: 10px 10px;
-  margin-right: 10px;
-  font-family: "Mouse Memoirs";
-  margin-bottom: 20px;
-  background-color: #16a34a;
-  border-radius: 10px;
-  cursor: pointer;
+.upward-downward{
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
-
-#lift-buttons button:active{
-  background-color: #57534e;
-} */
 
 .upward-downward button{
   width: 4rem;
   font-size: 20px;
-  padding: 10px 10px;
-  margin-right: 10px;
+  margin-left: 10px;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
   font-family: "Mouse Memoirs";
-  margin-bottom: 2px;
   background-color: #16a34a;
   border-radius: 10px;
   cursor: pointer;
@@ -152,29 +140,27 @@ h1 {
   background-color: #57534e;
 }
 
-.Floor-number{
-  font-family: "Mouse Memoirs";
-  font-size: 30px;
-  text-align: center;
-  margin: 20px;
+.lift-flex{
+  width: 100%;
+  height: 8rem;
+}
+
+.lift-direction{
+  display: flex;
+  /* width: 100%; */
+  /* border: 2px solid rebeccapurple; */
 }
 
 .lifts{
+  display: inline-flex;
   width: 5rem;
   height: 7rem;
-  margin-left: 3rem;
-  margin-bottom: 1px;
-  display: inline-flex;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
   padding: 5px;
+  margin-top: 15px;
   border: 5px solid black;
   border-radius: 5px;
-}
-
-.lifts p {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
 .lift-left-door{
@@ -182,11 +168,12 @@ h1 {
   height: 100%;
   width: 50%;
   background-color: aquamarine;
-  transition: 2.5s;
+  border-radius: 3px;
+  transition: 2.5s
 }
 
 .left-move{
-  transform: translate(-100%);
+  transform: translateX(-100%);
   transition-duration: 2.5s;
 }
 
@@ -195,14 +182,24 @@ h1 {
   height: 100%;
   width: 50%;
   background-color: aquamarine;
-  transition-duration: 2.5s;
+  border-radius: 3px;
+  transition: 2.5s;
 }  
 
-.right-move{
-  transform: translate(100%);
+.right-move {
+  transform: translateX(100%);
   transition: 2.5s;
 }
 
-.lift-simulation{
-  display: grid;
+.floor-line{
+  display: flex;
+  align-items: center;
+  /* background-color: black; */
+}
+
+.floor-style{
+  
+  height: 2px;
+  width: 100%d;
+  margin-right: 5px;
 }
