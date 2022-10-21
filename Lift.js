@@ -23,10 +23,17 @@ function closeLift(liftToMove){
 
 function moveLift(destinationFloor, liftToMove){
 
-    liftToMove.style.transition = `transform 2s linear`;
-    liftToMove.style.transform = `translateY(${-8.3 * destinationFloor}rem)`;
-    liftToMove.classList.add('busy');
-    liftToMove.dataset.liftInfo = destinationFloor;
+    if(window.screen.width < 1000){
+        liftToMove.style.transition = `transform 2s linear`;
+        liftToMove.style.transform = `translateY(${-5.3 * destinationFloor}rem)`;
+        liftToMove.classList.add('busy');
+        liftToMove.dataset.liftInfo = destinationFloor;
+    } else {
+        liftToMove.style.transition = `transform 2s linear`;
+        liftToMove.style.transform = `translateY(${-8.3 * destinationFloor}rem)`;
+        liftToMove.classList.add('busy');
+        liftToMove.dataset.liftInfo = destinationFloor;
+    }
 
     openLift(liftToMove);
     closeLift(liftToMove);
@@ -109,6 +116,16 @@ function generateFloors(numberOfFloors){
 }
 
 function checkInput(numberOfFloors, numberOfLifts){
+
+    if(window.screen.width < 500){
+        if(numberOfFloors <= 0 || numberOfFloors > 6){
+            alert("The number of floors should be in the range of 1 to 6");
+            return false;
+        } else if (numberOfLifts <= 0 || numberOfLifts > 5){
+            alert("The number of lifts should be in the range of 1 to 5");
+            return false;
+        } 
+    }
     if(numberOfFloors <= 0 || numberOfFloors > 10){
         alert("The number of floors should be in the range of 1 to 10");
         return false;
@@ -123,6 +140,7 @@ function checkInput(numberOfFloors, numberOfLifts){
 // Adding floors and preventDefault.
 confirmButton.addEventListener('click', function(e){
     e.preventDefault();
+    console.log(window.screen.width);
     if(checkInput(floorInput.value, liftInput.value)){
         // generateFloors
         generateFloors(floorInput.value);
