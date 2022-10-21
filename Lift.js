@@ -11,7 +11,7 @@ function openLift(liftToMove){
     setTimeout(() => {
         liftToMove.children[0].classList.add("left-move");
         liftToMove.children[1].classList.add("right-move");
-    }, 3000);
+    }, 2500);
 }
 
 function closeLift(liftToMove){

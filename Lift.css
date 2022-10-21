@@ -13,11 +13,11 @@ body{
 header{
     font-family: "Mouse Memoirs", sans-serif ;
     font-size: 200%;
-    color: #12B0E8;
+    /* color: #12B0E8; */
 }
 
 h1 {
-    font-size: 200%;
+    /* font-size: 200%; */
     text-align: center;
     position: relative;
     bottom: 10px;
@@ -60,11 +60,12 @@ h1 {
   height: 100px;
   border: 3px solid grey;
   border-radius: 5px;
+  display: flex;
 }
 
 .floor-input {
   text-align: center;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   margin: 20px;
   height: 50px;
   width: 15rem;
@@ -76,7 +77,7 @@ h1 {
 
 .lift-input{
   text-align: center;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   margin: 20px;
   height: 50px;
   width: 15rem;
@@ -170,7 +171,7 @@ h1 {
   background-color: aquamarine;
   border-radius: 3px;
   transition: 2.5s
-}
+} 
 
 .left-move{
   transform: translateX(-100%);
@@ -198,8 +199,95 @@ h1 {
 }
 
 .floor-style{
-  
   height: 2px;
   width: 100%d;
   margin-right: 5px;
+}
+
+@media screen and (max-width: 501px) {
+  header{
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .taking-input{
+    margin-left: 50px;
+    margin-right: 50px;
+    height: 130px;
+    display: flex;
+  }
+
+  .floor-input{
+    text-align: center;
+    height: 30px;
+    font-size: 25px;
+    margin-top: 5px;
+    margin-bottom: 3px;
+  }
+
+  .lift-input{
+    text-align: center;
+    font-size: 25px;
+    height: 30px;
+    margin-top: 3px;
+  }
+
+  .confirm-btn{
+    height: 30px;
+    font-size: 15px;
+    margin-left: 5rem;
+  }
+
+  .floor{
+    max-width: 500px;
+  }
+
+  .floor-wrapper{
+    display: flex;
+    border-bottom: 3px solid black;
+  }
+
+  .items-container{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .upward-downward{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+
+  .upward-downward{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+  }
+  .upward-downward button{
+    font-size: 15px;
+    width: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .lift-flex{
+    width: 100%;
+    height: 5rem;
+  }
+
+  .lift-direction{
+    display: flex;
+  }
+
+  .lifts{
+    display: inline-flex;
+    height: 4rem;
+    width: 2rem;
+    margin-left: 1rem;
+    margin-right: 5px;
+    border: 1px solid black;
+    border-radius: 1px;
+  }
+
 }
