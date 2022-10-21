@@ -24,6 +24,8 @@ function closeLift(liftToMove){
 function moveLift(destinationFloor, liftToMove){
 
     if(window.screen.width < 1000){
+        const LiftPostion = liftToMove.dataset.liftInfo;
+        const time = Math.abs(destinationFloor - LiftPostion);
         liftToMove.style.transition = `transform 2s linear`;
         liftToMove.style.transform = `translateY(${-5.3 * destinationFloor}rem)`;
         liftToMove.classList.add('busy');
